@@ -181,15 +181,15 @@ def upload(request, project_id):
             #A1 - Injection (SQLi)
             curs = connection.cursor()
             curs.execute(
-                "insert into taskManager_file ('name','path','project_id') values ('%s','%s',%s)" %
-                (name, upload_path, project_id))
+                "insert into taskManager_file ('name','path','project_id') values ('%s')" %
+                (file))
 
-            # file = File(
-            #name = name,
-            #path = upload_path,
-            # project = proj)
+            file = File(
+            name = name,
+            path = upload_path,
+            project = proj)
 
-            # file.save()
+            file.save()
 
             return redirect('/taskManager/' + project_id +
                             '/', {'new_file_added': True})
