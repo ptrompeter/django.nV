@@ -1,0 +1,11 @@
+Vulnerability Report on Iris’ Learning Journal
+
+by Patrick Trompeter
+
+Vulnerability 0 - I couldn’t crack Iris’s site.
+
+I took a swing at Iris’ learning journal, and found the security uncrackable, partly because there were so few moving parts.  Essentially, the only non-static elements on the page are the login field, which is secured with passlib. I couldn’t guess Iris’ password, and I wasn’t able to use sql injection attacks to trick passlib into displaying private information or logging me in with with a “’ or 1==1—.”
+
+My main objective was trying to get access to her edit page, but I failed spectacularly.  The buttons were hidden from the journal pages, and I was unable to manipulate the html and javascript to trick buttons into appearing (there was a content.js page from skeleton, but I didn’t have luck trying to misdirect it).  Adding junk characters to the url didn’t return a useful debug page, but I was able to guess the route to the edit page myself - at least enough to get a permission denied instead of a 404.  Once I knew the exact url of an edit page I was able to try other attacks, but without luck.  My best try was when I discovered that the ‘home’ button was a literal button tag inside an anchor tag.  I edited the <a> tag to be a form with a variety of methods and an action pointing at the edit page.  No luck though - permission denied every time.
+
+The truth is that there just weren’t enough moving parts to leave a lot of open security holes!  There wasn’t a registration page or other means to get a toe-hold behind the scenes.  From my perspective as an unauthenticated user, there basically weren’t any operations I was supposed to be able to use, and therefore to mess with and exploit.  Well done Iris!    
